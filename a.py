@@ -13,29 +13,29 @@ def col(map,posx,posy,deg):
     tracey=posy
     for i in range(200):
         dist=dist+1
-        tracex=tracex+0.01*np.sin(np.deg2rad(deg))
-        tracey=tracey+0.01*np.sin(np.deg2rad(deg)+90)
+        tracex=tracex+0.02*np.sin(np.deg2rad(deg)+45)
+        tracey=tracey+0.02*np.sin(np.deg2rad(deg)+135)
 
         tmpposx=int(round(tracex))
         tmpposy=int(round(tracey))
         if map[tmpposx][tmpposy]==1:
-            print(tmpposx,tmpposy)
+            #print(tmpposx,tmpposy)
             break
 
     return 200 - dist
 
 
 
-def newscr(screen,map,posx=4,posy=4,rot=0):
+def newscr(screen,map,posx=6,posy=6,rot=0):
 
 
     for i in range(len(screen)):
-        deg=int((i+1)/len(screen))*90+90*rot
-
+        deg=int((i)*90/len(screen))+90*rot
+        print(deg)
         tmp=col(map,posx,posy,deg)
         tmp2=tmp // 10
         for j in range(tmp//10):
-            screen[i][20-tmp2+j][2]=tmp
+            screen[i][30-tmp2+j][2]=tmp
 
 
 
@@ -43,7 +43,7 @@ def newscr(screen,map,posx=4,posy=4,rot=0):
 
 
 def rotl(a):
-    if a<4:
+    if a<3:
         return a+1
     else:
         return 0
@@ -85,9 +85,9 @@ background.fill((250, 250, 250))
 conv(actual,scr)
 sfr.make_surface(scr)
 
-rot=0
-x=4
-y=4
+rot=1
+x=6
+y=5
 Running=True
 while Running:
 
@@ -97,7 +97,7 @@ while Running:
     surf = pygame.surfarray.make_surface(scr)
     screen.blit(surf, (0, 0))
     pygame.display.flip()
-    print(x,"",y)
+    print(x," ",y," ",rot)
     print("  cos   ")
 
     for event in pygame.event.get():
@@ -107,16 +107,16 @@ while Running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w and x<9 and map[x+1][y]!=1:
                 x=x+1
-            elif event.key == pygame.K_a and y<9 and map[x][y+1]!=1:
+            elif event.key == pygame.K_d and y<9 and map[x][y+1]!=1:
                 y=y+1
             elif event.key == pygame.K_s and x>0 and map[x-1][y]!=1:
                 x=x-1
-            elif event.key == pygame.K_d and y>0 and map[x][y-1]!=1:
+            elif event.key == pygame.K_a and y>0 and map[x][y-1]!=1:
                 y=y-1
             elif event.key == pygame.K_q :
-                rot=rotl(rot)
-            elif event.key == pygame.K_e :
                 rot=rotr(rot)
+            elif event.key == pygame.K_e :
+                rot=rotl(rot)
 
 
 sfr.make_surface(scr)
