@@ -19,7 +19,7 @@ def col(map,posx,posy,deg):
         tmpposx=int(round(tracex))
         tmpposy=int(round(tracey))
         if map[tmpposx][tmpposy]==1:
-            #print(tmpposx,tmpposy)
+
             break
 
     return 200 - dist
@@ -31,7 +31,7 @@ def newscr(screen,map,posx=6,posy=6,rot=0):
 
     for i in range(len(screen)):
         deg=int((i)*90/len(screen))+90*rot
-        print(deg)
+
         tmp=col(map,posx,posy,deg)
         tmp2=tmp // 10
         for j in range(tmp//10):
@@ -97,19 +97,18 @@ while Running:
     surf = pygame.surfarray.make_surface(scr)
     screen.blit(surf, (0, 0))
     pygame.display.flip()
-    print(x," ",y," ",rot)
-    print("  cos   ")
+
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_w and x<9 and map[x+1][y]!=1:
+            if event.key == pygame.K_s and x<9 and map[x+1][y]!=1:
                 x=x+1
             elif event.key == pygame.K_d and y<9 and map[x][y+1]!=1:
                 y=y+1
-            elif event.key == pygame.K_s and x>0 and map[x-1][y]!=1:
+            elif event.key == pygame.K_w and x>0 and map[x-1][y]!=1:
                 x=x-1
             elif event.key == pygame.K_a and y>0 and map[x][y-1]!=1:
                 y=y-1
