@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78b0e8d4-2697-4122-bcac-266bf91e05da" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/a.py" beforeDir="false" afterPath="$PROJECT_DIR$/a.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -195,7 +195,21 @@
       <option name="project" value="LOCAL" />
       <updated>1580593133668</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="working prototype 4.0">
+      <created>1580593250293</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1580593250293</updated>
+    </task>
+    <task id="LOCAL-00009" summary="working prototype 4.0">
+      <created>1580593455949</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1580593455949</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -229,7 +243,8 @@
     <MESSAGE value="working prototype" />
     <MESSAGE value="working prototype 2.0" />
     <MESSAGE value="working prototype 3.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="working prototype 3.0" />
+    <MESSAGE value="working prototype 4.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="working prototype 4.0" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/b.py">
