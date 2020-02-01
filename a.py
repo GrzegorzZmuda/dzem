@@ -61,8 +61,8 @@ def conv(a,b):
             b[i][j][1] = a[int(i // 8)][int(j // 8)][1]
             b[i][j][2] = a[int(i // 8)][int(j // 8)][2]
 
-actual = np.ndarray((100,40,3))
-scr =np.ndarray((800,320,3))
+actual = np.ndarray((90,40,3))
+scr =np.ndarray((720,320,3))
 
 map=np.ndarray((10,10))
 for i in range(len(map)):
@@ -75,7 +75,7 @@ for i in range(len(map)):
             map[i][j]=1
 
 pygame.init()
-screen = pygame.display.set_mode((800,320))
+screen = pygame.display.set_mode((720,320))
 
 background = pygame.Surface(screen.get_size())
 background = background.convert()
@@ -91,7 +91,7 @@ y=5
 Running=True
 while Running:
 
-    actual = np.zeros((100, 40, 3))
+    actual = np.zeros((90, 40, 3))
     newscr(actual,map,x,y,rot)
     conv(actual, scr)
     surf = pygame.surfarray.make_surface(scr)
