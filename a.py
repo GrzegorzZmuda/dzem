@@ -13,8 +13,8 @@ def col(map,posx,posy,deg):
     tracey=posy
     for i in range(200):
         dist=dist+1
-        tracex=tracex+0.02*np.sin(np.deg2rad(deg)+45)
-        tracey=tracey+0.02*np.sin(np.deg2rad(deg)+135)
+        tracex=tracex+0.04*np.sin(np.deg2rad(deg)+90)
+        tracey=tracey+0.04*np.sin(np.deg2rad(deg)+180)
 
         tmpposx=int(round(tracex))
         tmpposy=int(round(tracey))
@@ -30,20 +30,26 @@ def newscr(screen,map,posx=6,posy=6,rot=0):
 
 
     for i in range(len(screen)):
-        deg=int((i)*90/len(screen))+90*rot
+        deg=int((i)*90/len(screen))+45*rot
 
         tmp=col(map,posx,posy,deg)
         tmp2=tmp // 10
         for j in range(tmp//10):
-            screen[i][30-tmp2+j][2]=tmp
+            screen[i][20-tmp2//2+j][2]=tmp
 
+    for i in range(len(screen)):
+        for j in range(len(screen[0])):
+            if j>20 and screen[i][j][2]<20:
+                screen[i][j][0]=100
 
+            if j<=20 and screen[i][j][2]<20:
 
+                screen[i][j][1] = 100
     return 0
 
 
 def rotl(a):
-    if a<3:
+    if a<7:
         return a+1
     else:
         return 0
@@ -52,7 +58,7 @@ def rotr(a):
     if a>0:
         return a-1
     else:
-        return 3
+        return 7
 
 def conv(a,b):
     for i in range(len(b)):
@@ -71,7 +77,9 @@ for i in range(len(map)):
             map[i][j]=1
         if j==0 or j==9:
             map[i][j]=1
-        if i ==5 and 2<j<8:
+        if i ==5 and 3<j<5:
+            map[i][j]=1
+        if i ==5 and 6<j<8:
             map[i][j]=1
 
 pygame.init()
@@ -85,7 +93,7 @@ background.fill((250, 250, 250))
 conv(actual,scr)
 sfr.make_surface(scr)
 
-rot=1
+rot=2
 x=6
 y=5
 Running=True
@@ -93,9 +101,9 @@ while Running:
 
     actual = np.zeros((90, 40, 3))
     newscr(actual,map,x,y,rot)
-    conv(actual, scr)
-    surf = pygame.surfarray.make_surface(scr)
-    screen.blit(surf, (0, 0))
+    #conv(actual, scr)
+    surf = pygame.surfarray.make_surface(actual)
+    screen.blit(pygame.transform.scale(surf, (720, 320)), (0, 0))
     pygame.display.flip()
 
 
@@ -104,14 +112,14 @@ while Running:
             pygame.quit()
             exit()
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_s and x<9 and map[x+1][y]!=1:
-                x=x+1
-            elif event.key == pygame.K_d and y<9 and map[x][y+1]!=1:
-                y=y+1
-            elif event.key == pygame.K_w and x>0 and map[x-1][y]!=1:
-                x=x-1
-            elif event.key == pygame.K_a and y>0 and map[x][y-1]!=1:
-                y=y-1
+            if event.key == pygame.K_s and x<9 and map[int(x+1)][int(y)]!=1:
+                x=x+0.3
+            elif event.key == pygame.K_d and y<9 and map[int(x)][int(y+1)]!=1:
+                y=y+0.3
+            elif event.key == pygame.K_w and x>0 and map[int(x-1)][int(y)]!=1:
+                x=x-0.3
+            elif event.key == pygame.K_a and y>0 and map[int(x)][int(y-1)]!=1:
+                y=y-0.3
             elif event.key == pygame.K_q :
                 rot=rotr(rot)
             elif event.key == pygame.K_e :
